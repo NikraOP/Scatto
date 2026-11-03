@@ -221,3 +221,14 @@
   }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('[data-anim]').forEach(el => io.observe(el));
 })();
+
+(() => {
+  const hdr = document.querySelector('.hdr');
+  if (!hdr) return;
+  const upd = () => hdr.classList.toggle('is-stuck', scrollY > 80);
+  addEventListener('scroll', upd, { passive: true });
+  upd();
+})();
+
+/* страховка: если первый экран не успел запуститься (медленная сеть, старый браузер), всё равно показать шапку */
+setTimeout(() => { document.body.classList.add('is-ready'); const h = document.querySelector('.hero'); if (h) h.classList.add('is-ready'); }, 4000);
