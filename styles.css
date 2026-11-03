@@ -51,7 +51,7 @@ address { font-style: normal; }
 .gauge--4 { left: 39rem; top: 298.1rem; width: 35.2rem; -webkit-transform-origin: 50.03% 50.03%; transform-origin: 50.03% 50.03%; }
 .gauge--5 { left: 12.1rem; top: 398.6rem; width: 11.1rem; -webkit-transform-origin: 39.10% 50.15%; transform-origin: 39.10% 50.15%; }
 .gauge--6 { left: 163.7rem; top: 453.3rem; width: 23.7rem; -webkit-transform-origin: 50.00% 50.04%; transform-origin: 50.00% 50.04%; }
-.gauge--7 { left: 22.5rem; top: 562.6rem; width: 12.4rem; -webkit-transform-origin: 50.32% 49.84%; transform-origin: 50.32% 49.84%; }
+.gauge--7 { left: 22.3rem; top: 562.35rem; width: 12.8rem; -webkit-transform-origin: 48.52% 51.64%; transform-origin: 48.52% 51.64%; }
 .gauge--8 { left: 9.3rem; top: 625.1rem; width: 17.7rem; -webkit-transform-origin: 49.32% 52.34%; transform-origin: 49.32% 52.34%; }
 
 /* прогресс слайда — заполняется размерная линия чертежа, над ней номер слайда */
