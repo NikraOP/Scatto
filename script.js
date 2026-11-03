@@ -5,6 +5,8 @@
   let savedY = 0;
   try { savedY = +sessionStorage.getItem(KEY) || 0; } catch (e) {}
   if (savedY > 0) scrollTo({ top: savedY, behavior: 'instant' });
+  // страница открылась уже прокрученной (F5, переход назад): шапку не ждём, вступление первого экрана ушло из виду
+  if (savedY > 80) document.body.classList.add('is-ready');
   addEventListener('pagehide', saveY);
   addEventListener('beforeunload', saveY);
 

@@ -106,6 +106,7 @@ main > section > *, .ftr > * { position: relative; z-index: 2; }
   .hdr.is-stuck .logo { top: 1.9rem; width: 20rem; }
   .hdr.is-stuck .hdr__tag { display: none; }
   .hdr.is-stuck .burger { top: 2.3rem; }
+  .js .hdr.is-stuck .logo, .js .hdr.is-stuck .hdr__tag { opacity: 1; -webkit-transform: none; transform: none; }
 }
 
 .menu { position: fixed; inset: 0; z-index: 25; display: flex; flex-direction: column; justify-content: center; padding: 14rem 19.7rem 8rem; background: var(--blue); -webkit-clip-path: circle(0 at calc(100% - 13rem) 7.4rem); clip-path: circle(0 at calc(100% - 13rem) 7.4rem); transition: clip-path .8s var(--ease); }
@@ -306,6 +307,8 @@ a[href^="tel:"] { white-space: nowrap; }
   .hdr { position: sticky; top: 0; height: 72px; background: var(--blue); }
   .logo { left: var(--pad); top: 50%; width: 140px; transform: translateY(-50%); }
   .js body.is-ready .hdr .logo { transform: translateY(-50%); }
+  .js .hdr.is-stuck .logo { opacity: 1; -webkit-transform: translateY(-50%); transform: translateY(-50%); }
+  .js .hdr.is-stuck .hdr__tag { opacity: 1; -webkit-transform: none; transform: none; }
   .hdr__tag { left: calc(var(--pad) + 156px); top: 50%; font-size: 13px; line-height: 1.3; margin-top: -4px; }
   .burger { left: auto; right: calc(var(--pad) - 10px); top: 50%; width: 52px; height: 48px; margin-top: -24px; }
   .burger span:nth-child(1) { -webkit-transform: translateY(-9px); transform: translateY(-9px); }

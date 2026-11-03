@@ -178,3 +178,11 @@
   document.querySelectorAll('[data-anim]').forEach(el => io.observe(el));
   document.body.classList.add('is-ready');
 })();
+
+(() => {
+  const hdr = document.querySelector('.hdr');
+  if (!hdr) return;
+  const upd = () => hdr.classList.toggle('is-stuck', scrollY > 80);
+  addEventListener('scroll', upd, { passive: true });
+  upd();
+})();
