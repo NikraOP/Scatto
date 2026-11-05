@@ -1,0 +1,278 @@
+/* SCATTO, вариант 3: страницы статей. Общее берётся из styles.css.
+   Десктоп ≥1100: 1rem = 10 px макета 1920. Ниже 1100 обычный поток.
+   Для старых браузеров: без inset, aspect-ratio и gap во flex, фото в JPG, у clip-path и transform есть -webkit-. */
+
+.menu { top: 0; right: 0; bottom: 0; left: 0; }
+@supports not (font-size: clamp(1px, 1px, 1px)) { .menu__list a { font-size: 40px; } .menu__phone, .menu__mail { font-size: 22px; } }
+.ag > [hidden], .ag__none[hidden] { display: none; }
+
+.ac__a, .al__a, .ar__a, .pic, .ac__t, .ac__x, .ac__s, .al__t, .al__x, .al__b, .al__ph, .ar__c, .ar__x { display: block; }
+.ac__a, .al__a, .ar__a { color: inherit; }
+
+/* ---------- заголовок раздела ---------- */
+.ah { position: relative; }
+
+/* ---------- фото в рамке с постоянной пропорцией ---------- */
+.pic { position: relative; height: 0; padding-top: 83.6%; overflow: hidden; background: var(--white); }
+.pic img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; -webkit-transition: -webkit-transform 1.2s var(--ease); transition: transform 1.2s var(--ease); }
+.pic--b img { top: 4%; height: 92%; object-fit: contain; }
+.ac:hover .pic img { -webkit-transform: scale(1.05); transform: scale(1.05); }
+
+/* ---------- вариант 1: темы ---------- */
+.tabs { display: grid; }
+.tabs__b { display: block; width: 100%; height: 4.7rem; min-height: 44px; padding: 0 1rem; border: 0; border-radius: 0; background: var(--white); color: var(--blue); font-family: var(--mont); font-size: 2.2rem; font-weight: 500; line-height: 1; text-transform: uppercase; white-space: nowrap; cursor: pointer; -webkit-appearance: none; appearance: none; transition: background-color .3s var(--ease); }
+.tabs__b:hover { background: #e6f4fb; }
+.tabs__b.is-on { background: var(--sky); }
+
+/* ---------- вариант 1: карточки ---------- */
+.ag { display: grid; }
+.ac__a { height: 100%; display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; }
+.ac__a .pic { -webkit-flex: none; flex: none; }
+.ac__b { -webkit-flex: 1 1 auto; flex: 1 1 auto; display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; text-align: left; }
+.ac__t, .al__t { text-transform: uppercase; }
+.ac__t { text-align: center; }
+.ac__s { margin: 1.07rem 0 1.1rem; font-size: 1.41rem; line-height: 1.9rem; }
+.ac__r { display: -webkit-flex; display: flex; -webkit-justify-content: space-between; justify-content: space-between; padding: .61rem .3rem .61rem .2rem; }
+.ac__r + .ac__r { border-top: 1px solid rgba(0, 0, 0, .5); }
+.ac__x { -webkit-flex: 1 1 auto; flex: 1 1 auto; margin-bottom: 1.4rem; font-size: 1.41rem; line-height: 1.9rem; }
+.ac__btn { -webkit-align-self: center; align-self: center; }
+.ag__none { font-size: 2.1rem; font-weight: 300; }
+
+.al { background: var(--sky); color: var(--ink); font-family: var(--mont); }
+.al__ph { position: relative; overflow: hidden; background: var(--white); }
+.al__ph img, .sh__ph img, .zz__ph img { position: absolute; left: 0; top: -8%; width: 100%; height: 116%; max-width: none; object-fit: cover; will-change: transform; }
+.al__m { display: block; }
+.al__m span + span, .zz__m span + span { margin-left: 2.4em; }
+.al__a:hover .btn, .ac__a:hover .btn { background: var(--blue-d); }
+
+/* ---------- вариант 2: оглавление на белом ---------- */
+.ax { position: relative; background: var(--white); color: var(--ink); }
+.ax__l { position: relative; z-index: 2; }
+.ar::before, .ax__l::after { content: ""; display: block; height: 2px; background: radial-gradient(circle at 1px 1px, #000 1px, transparent 1.2px) 0 0 / 1.0956rem 2px repeat-x; }
+.ar__top { display: -webkit-flex; display: flex; -webkit-justify-content: space-between; justify-content: space-between; -webkit-align-items: center; align-items: center; }
+.ar__t { display: block; font-size: 3.32rem; line-height: 4.1rem; -webkit-transition: color .3s var(--ease), -webkit-transform .6s var(--ease); transition: color .3s var(--ease), transform .6s var(--ease); }
+.ar.is-act .ar__t { color: var(--blue); -webkit-transform: translateX(1.4rem); transform: translateX(1.4rem); }
+.ar__ico { position: relative; display: block; width: 1.6rem; height: 1.6rem; -webkit-flex: none; flex: none; margin-left: 3rem; -webkit-transition: -webkit-transform .5s var(--ease); transition: transform .5s var(--ease); }
+.ar__ico::before, .ar__ico::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: .26rem; margin-top: -.13rem; background: var(--blue); }
+.ar__ico::after { -webkit-transform: rotate(90deg); transform: rotate(90deg); }
+.ar.is-act .ar__ico { -webkit-transform: rotate(90deg); transform: rotate(90deg); }
+.ar__m { display: block; font-family: var(--mont); font-size: 1.41rem; line-height: 1.9rem; color: rgba(0, 0, 0, .62); }
+.ar__m span + span { margin-left: 2.4em; }
+.ar__xw, .ar__xi { display: block; }
+.ar__xi { overflow: hidden; }
+.ar__x { font-size: 2.1rem; font-weight: 300; line-height: 3.2rem; }
+.ar__th { display: none; }
+
+/* буква-окно: контур А многоугольником, он работает во всех браузерах и при открытии с диска */
+.awin { --mx: 0; --off: calc(var(--mx) * 5rem); position: relative; width: 100%; height: 100%; -webkit-clip-path: polygon(100.00% 100.00%, 66.72% 0.00%, 32.82% 0.00%, 0.00% 100.00%, 19.30% 100.00%, 35.60% 100.00%, 35.60% 97.16%, 35.60% 94.32%, 35.60% 91.48%, 35.60% 88.63%, 35.56% 85.70%, 35.58% 82.77%, 35.57% 79.83%, 35.53% 76.90%, 35.69% 72.89%, 36.33% 68.99%, 37.40% 65.20%, 38.85% 61.50%, 39.97% 59.04%, 41.10% 56.58%, 42.17% 54.10%, 43.13% 51.56%, 44.01% 48.65%, 44.68% 45.69%, 45.09% 42.69%, 45.24% 39.64%, 45.23% 37.90%, 45.22% 36.17%, 45.22% 34.43%, 45.22% 32.69%, 45.20% 32.22%, 45.10% 31.82%, 44.86% 31.51%, 44.43% 31.30%, 44.05% 31.01%, 43.90% 30.52%, 43.83% 29.84%, 43.76% 29.16%, 43.77% 28.75%, 43.88% 28.39%, 44.10% 28.09%, 44.44% 27.88%, 44.74% 27.70%, 44.93% 27.46%, 45.01% 26.79%, 45.00% 26.29%, 45.11% 25.79%, 45.32% 25.34%, 45.59% 25.00%, 45.97% 24.78%, 46.46% 24.70%, 48.27% 24.70%, 50.08% 24.69%, 51.89% 24.68%, 53.70% 24.69%, 54.29% 24.81%, 54.74% 25.15%, 55.02% 25.71%, 55.13% 26.46%, 55.16% 26.92%, 55.24% 27.32%, 55.45% 27.66%, 55.83% 27.93%, 56.15% 28.28%, 56.24% 28.80%, 56.22% 29.20%, 56.20% 29.60%, 56.18% 30.00%, 56.14% 30.39%, 55.96% 30.97%, 55.76% 31.18%, 55.46% 31.32%, 55.03% 31.62%, 54.91% 32.16%, 54.84% 35.58%, 54.82% 38.99%, 54.96% 42.40%, 55.36% 45.80%, 55.85% 48.22%, 56.51% 50.59%, 57.33% 52.91%, 58.29% 55.17%, 58.97% 56.63%, 59.65% 58.08%, 60.34% 59.54%, 61.02% 60.99%, 62.52% 64.67%, 63.59% 68.45%, 64.22% 72.35%, 64.40% 76.36%, 64.35% 82.00%, 64.33% 87.64%, 64.32% 93.28%, 64.32% 98.92%, 64.32% 99.46%, 64.31% 100.00%, 69.90% 100.00%, 100.00% 100.00%); clip-path: polygon(100.00% 100.00%, 66.72% 0.00%, 32.82% 0.00%, 0.00% 100.00%, 19.30% 100.00%, 35.60% 100.00%, 35.60% 97.16%, 35.60% 94.32%, 35.60% 91.48%, 35.60% 88.63%, 35.56% 85.70%, 35.58% 82.77%, 35.57% 79.83%, 35.53% 76.90%, 35.69% 72.89%, 36.33% 68.99%, 37.40% 65.20%, 38.85% 61.50%, 39.97% 59.04%, 41.10% 56.58%, 42.17% 54.10%, 43.13% 51.56%, 44.01% 48.65%, 44.68% 45.69%, 45.09% 42.69%, 45.24% 39.64%, 45.23% 37.90%, 45.22% 36.17%, 45.22% 34.43%, 45.22% 32.69%, 45.20% 32.22%, 45.10% 31.82%, 44.86% 31.51%, 44.43% 31.30%, 44.05% 31.01%, 43.90% 30.52%, 43.83% 29.84%, 43.76% 29.16%, 43.77% 28.75%, 43.88% 28.39%, 44.10% 28.09%, 44.44% 27.88%, 44.74% 27.70%, 44.93% 27.46%, 45.01% 26.79%, 45.00% 26.29%, 45.11% 25.79%, 45.32% 25.34%, 45.59% 25.00%, 45.97% 24.78%, 46.46% 24.70%, 48.27% 24.70%, 50.08% 24.69%, 51.89% 24.68%, 53.70% 24.69%, 54.29% 24.81%, 54.74% 25.15%, 55.02% 25.71%, 55.13% 26.46%, 55.16% 26.92%, 55.24% 27.32%, 55.45% 27.66%, 55.83% 27.93%, 56.15% 28.28%, 56.24% 28.80%, 56.22% 29.20%, 56.20% 29.60%, 56.18% 30.00%, 56.14% 30.39%, 55.96% 30.97%, 55.76% 31.18%, 55.46% 31.32%, 55.03% 31.62%, 54.91% 32.16%, 54.84% 35.58%, 54.82% 38.99%, 54.96% 42.40%, 55.36% 45.80%, 55.85% 48.22%, 56.51% 50.59%, 57.33% 52.91%, 58.29% 55.17%, 58.97% 56.63%, 59.65% 58.08%, 60.34% 59.54%, 61.02% 60.99%, 62.52% 64.67%, 63.59% 68.45%, 64.22% 72.35%, 64.40% 76.36%, 64.35% 82.00%, 64.33% 87.64%, 64.32% 93.28%, 64.32% 98.92%, 64.32% 99.46%, 64.31% 100.00%, 69.90% 100.00%, 100.00% 100.00%); -webkit-transform: translate3d(var(--off), 0, 0); transform: translate3d(var(--off), 0, 0); -webkit-transition: -webkit-transform 1.2s var(--ease); transition: transform 1.2s var(--ease); background: var(--sky); }
+.awin__m { position: absolute; left: -6rem; right: -6rem; top: 0; bottom: 0; -webkit-transform: translate3d(calc(var(--off) * -1), 0, 0); transform: translate3d(calc(var(--off) * -1), 0, 0); -webkit-transition: -webkit-transform 1.2s var(--ease); transition: transform 1.2s var(--ease); }
+.awin__i { position: absolute; left: 0; top: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; opacity: 0; -webkit-transform: scale(1.12); transform: scale(1.12); -webkit-transition: opacity 1.1s var(--ease), -webkit-transform 2.4s var(--ease); transition: opacity 1.1s var(--ease), transform 2.4s var(--ease); }
+.awin__i.is-on { opacity: 1; -webkit-transform: none; transform: none; }
+.awin__i--b { object-fit: contain; top: 26%; height: 72%; }
+.awin__c { position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: var(--white); -webkit-transform: scaleY(0); transform: scaleY(0); -webkit-transform-origin: 50% 0; transform-origin: 50% 0; }
+.js .awin__c { -webkit-transform: scaleY(1); transform: scaleY(1); }
+.js .awrap.is-in .awin__c { -webkit-transform: scaleY(0); transform: scaleY(0); -webkit-transition: -webkit-transform 1.5s cubic-bezier(.76, 0, .24, 1) .15s; transition: transform 1.5s cubic-bezier(.76, 0, .24, 1) .15s; }
+
+/* ---------- вариант 3: зигзаг ---------- */
+.zz { position: relative; }
+.zz--w { background: var(--white); color: var(--ink); }
+.zz__ph { display: block; overflow: hidden; }
+.zz__m { font-family: var(--mont); font-size: 1.6rem; font-weight: 500; line-height: 2.2rem; }
+.zz__t a { display: block; color: inherit; transition: color .3s var(--ease); }
+.zz__t .ln, .sh__t .ln { padding-bottom: .1em; margin-bottom: -.1em; }
+.zz__t .ln > span, .sh__t .ln > span { -webkit-transform: none; transform: none; }
+.js [data-lines] .ln > span { -webkit-transform: translateY(110%); transform: translateY(110%); -webkit-transition: -webkit-transform 1.1s var(--ease); transition: transform 1.1s var(--ease); }
+.js [data-lines].is-in .ln > span { -webkit-transform: none; transform: none; }
+.js [data-lines].is-in .ln:nth-child(2) > span { transition-delay: .08s; }
+.js [data-lines].is-in .ln:nth-child(3) > span { transition-delay: .16s; }
+.zz__btn { background: var(--white); color: var(--blue); }
+.zz__btn:hover { background: #e6f4fb; }
+.zz--w .zz__btn { background: var(--blue); color: var(--white); }
+.zz--w .zz__btn:hover { background: var(--blue-d); }
+.zz--w .zz__t a:hover { color: var(--blue); }
+.zz--w :focus-visible, .ax :focus-visible, .sb :focus-visible { outline-color: var(--blue); }
+
+/* ---------- шаблон статьи ---------- */
+.sh { position: relative; }
+.sh__ph { overflow: hidden; }
+.sh__back { display: -webkit-inline-flex; display: inline-flex; -webkit-align-items: center; align-items: center; min-height: 44px; font-family: var(--mont); font-size: 1.6rem; font-weight: 500; text-transform: uppercase; }
+.sh__back svg { width: .8rem; min-width: 8px; height: auto; margin-right: 1.4rem; }
+.sb { position: relative; background: var(--white); color: var(--ink); }
+.sb__in { position: relative; z-index: 2; }
+.sb__in h2 { font-weight: 500; }
+.sb__in li { position: relative; }
+.sb__in li::before { content: ""; position: absolute; left: 0; width: .9em; height: 2px; background: var(--blue); }
+.sb__in figure { margin: 0; }
+.sb__in figure img { width: 100%; height: auto; }
+.sb__in figcaption { font-family: var(--mont); color: rgba(0, 0, 0, .62); }
+.sb__in blockquote { margin: 0; border-left: 3px solid var(--blue); color: var(--blue-d); }
+.rel { position: relative; }
+
+/* ---------- выбор варианта внизу экрана, убрать после решения заказчика ---------- */
+.vsw { position: fixed; left: 50%; bottom: 16px; bottom: calc(16px + constant(safe-area-inset-bottom)); bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 20; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; padding: 4px 4px 4px 16px; background: var(--white); color: var(--ink); border: 1px solid var(--blue); box-shadow: 0 10px 24px -12px rgba(0, 40, 70, .55); font-family: var(--mont); font-size: 14px; font-weight: 500; -webkit-transform: translateX(-50%); transform: translateX(-50%); white-space: nowrap; }
+.vsw__l { margin-right: 10px; }
+.vsw__a { display: block; width: 44px; height: 44px; line-height: 44px; text-align: center; color: var(--blue-d); transition: background-color .25s var(--ease), color .25s var(--ease); }
+.vsw__a + .vsw__a { margin-left: 2px; }
+.vsw__a:hover { background: #e6f4fb; }
+.vsw__a.is-on { background: var(--blue-d); color: var(--white); }
+.vsw__a:focus-visible { outline-color: var(--blue); }
+
+@media (min-width: 1100px) {
+  .ah__title { position: absolute; right: 101.5rem; top: 21.5rem; text-align: right; white-space: nowrap; }
+  .ah__txt { position: absolute; left: 102.9rem; top: 20.2rem; white-space: nowrap; }
+  .a2, .a3 { height: 50rem; }
+  .has-vsw .ftr { height: 34rem; }
+  .lead .decor--6 { top: 14.1rem; }
+  .lead .gauge--8 { left: 9.3rem; top: 44rem; }
+
+  /* вариант 1 */
+  .a1 { padding: 47.1rem 0 9.8rem 19.1rem; }
+  .tabs { position: relative; z-index: 2; grid-template-columns: repeat(4, 31.1rem); grid-column-gap: 9.6rem; column-gap: 9.6rem; }
+  .ag { position: relative; z-index: 2; margin-top: 8.2rem; grid-template-columns: repeat(4, 31.1rem); grid-column-gap: 9.6rem; column-gap: 9.6rem; grid-row-gap: 8.55rem; row-gap: 8.55rem; }
+  .ag__none { position: relative; z-index: 2; padding: 4rem 0 8rem; }
+  .al { grid-column: 1 / -1; }
+  .al__a { position: relative; height: 56rem; }
+  .al__ph { position: absolute; left: 0; top: 0; bottom: 0; width: 112.6rem; -webkit-clip-path: polygon(0 0, 100% 0, 86% 100%, 0 100%); clip-path: polygon(0 0, 100% 0, 86% 100%, 0 100%); }
+  .al__b { position: absolute; left: 112.6rem; right: 3rem; top: 5rem; bottom: 4rem; }
+  .al__t { font-size: 2.6rem; font-weight: 700; line-height: 3.2rem; }
+  .al__m { margin-top: 2.2rem; font-size: 1.41rem; line-height: 1.9rem; }
+  .al__x { margin-top: 2.2rem; font-size: 1.6rem; line-height: 2.3rem; }
+  .al__btn { position: absolute; left: 0; bottom: 0; }
+  .a1 .decor--3 { top: 40rem; }
+  .a1 .decor--4 { top: 175rem; }
+  .a1 .gauge--1 { left: 3.6rem; top: 95rem; }
+  .a1 .gauge--2 { left: 175.6rem; top: 62rem; }
+  .a1 .gauge--3 { left: 4rem; top: 188rem; }
+
+  /* вариант 2 */
+  .a2 .gauge--1, .a3 .gauge--1 { left: 172rem; top: 30rem; }
+  .ax { display: -webkit-flex; display: flex; -webkit-align-items: flex-start; align-items: flex-start; padding: 8rem 0 12rem 19.1rem; }
+  .ax__l { width: 94rem; -webkit-flex: none; flex: none; }
+  .ax .decor--5, .sb .decor--5 { top: 0; height: 100%; object-fit: cover; object-position: 50% 0; }
+  .ax .decor--5 { left: -20rem; }
+  .ax .gauge--7 { left: 4rem; top: 62rem; }
+  .ar__a { padding: 2.4rem 1rem 2.4rem 0; }
+  .ar__m { margin-top: .8rem; }
+  .ar__xw { display: grid; grid-template-rows: 0fr; -webkit-transition: grid-template-rows .55s var(--ease); transition: grid-template-rows .55s var(--ease); }
+  .ar.is-act .ar__xw { grid-template-rows: 1fr; }
+  .ar__xi { min-height: 0; }
+  .ar__x { padding-top: 1.2rem; padding-right: 8rem; }
+  .awrap { position: -webkit-sticky; position: sticky; top: 14rem; z-index: 2; width: 62.4rem; height: 59.2rem; margin-left: 5.2rem; -webkit-flex: none; flex: none; }
+  .page--free { overflow: visible; }
+
+  /* вариант 3 */
+  .zz { height: 70.1rem; }
+  .zz__ph { position: absolute; left: 0; top: 0; width: 79.8rem; height: 70.1rem; -webkit-clip-path: polygon(0 0, 100% 0, 69.32% 100%, 0 100%); clip-path: polygon(0 0, 100% 0, 69.32% 100%, 0 100%); }
+  .zz--r .zz__ph { left: 112.2rem; -webkit-clip-path: polygon(30.68% 0, 100% 0, 100% 100%, 0 100%); clip-path: polygon(30.68% 0, 100% 0, 100% 100%, 0 100%); }
+  .zz__in { position: absolute; left: 87.2rem; top: 0; bottom: 0; width: 92rem; display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; -webkit-justify-content: center; justify-content: center; -webkit-align-items: flex-start; align-items: flex-start; }
+  .zz--r .zz__in { left: 19.1rem; text-align: right; -webkit-align-items: flex-end; align-items: flex-end; }
+  .zz__t { margin-top: 2.2rem; white-space: nowrap; }
+  .zz__x { margin-top: 2.6rem; max-width: 72rem; }
+  .zz__btn { width: 34.7rem; height: 4.3rem; margin-top: 3.2rem; font-family: var(--rob); font-size: 2.1rem; font-weight: 400; }
+  .zz .gauge--2 { left: 175rem; top: 6rem; }
+  .zz .decor--4 { top: -20rem; left: 36rem; }
+  .zz .gauge--3 { left: 176rem; top: 8rem; }
+  .zz .gauge--5 { left: 174rem; top: 50rem; }
+
+  /* шаблон статьи */
+  .sh { height: 90rem; }
+  .sh .gauge--1 { left: 170rem; top: 18rem; }
+  .sh__ph { position: absolute; left: 0; top: 16rem; width: 79.8rem; height: 74rem; -webkit-clip-path: polygon(0 0, 100% 0, 69.32% 100%, 0 100%); clip-path: polygon(0 0, 100% 0, 69.32% 100%, 0 100%); }
+  .sh__in { position: absolute; left: 87.2rem; top: 22rem; width: 90rem; }
+  .sh .zz__m { margin-top: 1.4rem; }
+  .sh__t { margin-top: 2.2rem; white-space: nowrap; }
+  .sh__x { margin-top: 2.8rem; max-width: 72rem; }
+  .sb { padding: 8rem 0 10rem 38rem; }
+  .sb .gauge--6 { left: 150rem; top: 30rem; }
+  .sb__in { width: 94rem; font-size: 2.1rem; line-height: 3.38rem; }
+  .sb__in h2 { margin: 5rem 0 2rem; font-size: 3.56rem; line-height: 4.2rem; }
+  .sb__in h2:first-child { margin-top: 0; }
+  .sb__in p { margin-bottom: 2.4rem; }
+  .sb__in ul { margin: 0 0 2.4rem; }
+  .sb__in li { padding-left: 3rem; margin-bottom: 1rem; }
+  .sb__in li::before { top: 1.6rem; }
+  .sb__in figure { margin: 4rem 0; }
+  .sb__in figcaption { margin-top: 1.2rem; font-size: 1.41rem; line-height: 1.9rem; }
+  .sb__in blockquote { margin: 4rem 0; padding-left: 3rem; font-size: 3.32rem; line-height: 4.1rem; }
+  .rel { padding: 9rem 0 9.8rem 19.1rem; }
+  .ag--rel { margin-top: 5rem; }
+}
+
+@media (max-width: 1099px) {
+  .ah { padding: 32px var(--pad) 0; }
+  .ah__title, .ah__txt { position: relative; }
+  .ah__txt { margin-top: 20px; }
+  .a2, .a3 { padding-bottom: 48px; }
+  .has-vsw .ftr { padding-bottom: 96px; }
+  .form__send { padding-right: 0; }
+
+  .a1 { padding-bottom: 56px; }
+  .tabs { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-gap: 10px; gap: 10px; margin-top: 32px; }
+  .tabs__b { height: 48px; font-size: 14px; }
+  .ag { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-gap: 24px; gap: 24px; margin-top: 28px; }
+  .ag__none { margin-top: 28px; font-size: 17px; }
+  .ac .btn--sm { min-width: 0; width: 100%; }
+  .al { grid-column: 1 / -1; }
+  .al__ph { height: 0; padding-top: 52%; -webkit-clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); }
+  .al__b { padding: 14px 20px 22px; }
+  .al__t { font-size: 20px; font-weight: 700; line-height: 1.3; }
+  .al__m { margin-top: 10px; font-size: 14px; }
+  .al__x { margin: 12px 0 16px; font-size: 15px; line-height: 1.5; }
+  .ac__s { margin: 8px 0 12px; font-size: 14px; line-height: 19px; }
+  .ac__r { padding: 7px 2px; }
+  .ac__x { margin-bottom: 16px; font-size: 14px; line-height: 1.45; }
+
+  .ax { padding: 16px var(--pad) 56px; }
+  .ar__a { display: -webkit-flex; display: flex; padding: 20px 0; }
+  .ar__th { display: block; position: relative; width: 104px; height: 99px; -webkit-flex: none; flex: none; margin-right: 16px; overflow: hidden; background: var(--sky); -webkit-clip-path: polygon(100.00% 100.00%, 66.72% 0.00%, 32.82% 0.00%, 0.00% 100.00%, 19.30% 100.00%, 35.60% 100.00%, 35.60% 97.16%, 35.60% 94.32%, 35.60% 91.48%, 35.60% 88.63%, 35.56% 85.70%, 35.58% 82.77%, 35.57% 79.83%, 35.53% 76.90%, 35.69% 72.89%, 36.33% 68.99%, 37.40% 65.20%, 38.85% 61.50%, 39.97% 59.04%, 41.10% 56.58%, 42.17% 54.10%, 43.13% 51.56%, 44.01% 48.65%, 44.68% 45.69%, 45.09% 42.69%, 45.24% 39.64%, 45.23% 37.90%, 45.22% 36.17%, 45.22% 34.43%, 45.22% 32.69%, 45.20% 32.22%, 45.10% 31.82%, 44.86% 31.51%, 44.43% 31.30%, 44.05% 31.01%, 43.90% 30.52%, 43.83% 29.84%, 43.76% 29.16%, 43.77% 28.75%, 43.88% 28.39%, 44.10% 28.09%, 44.44% 27.88%, 44.74% 27.70%, 44.93% 27.46%, 45.01% 26.79%, 45.00% 26.29%, 45.11% 25.79%, 45.32% 25.34%, 45.59% 25.00%, 45.97% 24.78%, 46.46% 24.70%, 48.27% 24.70%, 50.08% 24.69%, 51.89% 24.68%, 53.70% 24.69%, 54.29% 24.81%, 54.74% 25.15%, 55.02% 25.71%, 55.13% 26.46%, 55.16% 26.92%, 55.24% 27.32%, 55.45% 27.66%, 55.83% 27.93%, 56.15% 28.28%, 56.24% 28.80%, 56.22% 29.20%, 56.20% 29.60%, 56.18% 30.00%, 56.14% 30.39%, 55.96% 30.97%, 55.76% 31.18%, 55.46% 31.32%, 55.03% 31.62%, 54.91% 32.16%, 54.84% 35.58%, 54.82% 38.99%, 54.96% 42.40%, 55.36% 45.80%, 55.85% 48.22%, 56.51% 50.59%, 57.33% 52.91%, 58.29% 55.17%, 58.97% 56.63%, 59.65% 58.08%, 60.34% 59.54%, 61.02% 60.99%, 62.52% 64.67%, 63.59% 68.45%, 64.22% 72.35%, 64.40% 76.36%, 64.35% 82.00%, 64.33% 87.64%, 64.32% 93.28%, 64.32% 98.92%, 64.32% 99.46%, 64.31% 100.00%, 69.90% 100.00%, 100.00% 100.00%); clip-path: polygon(100.00% 100.00%, 66.72% 0.00%, 32.82% 0.00%, 0.00% 100.00%, 19.30% 100.00%, 35.60% 100.00%, 35.60% 97.16%, 35.60% 94.32%, 35.60% 91.48%, 35.60% 88.63%, 35.56% 85.70%, 35.58% 82.77%, 35.57% 79.83%, 35.53% 76.90%, 35.69% 72.89%, 36.33% 68.99%, 37.40% 65.20%, 38.85% 61.50%, 39.97% 59.04%, 41.10% 56.58%, 42.17% 54.10%, 43.13% 51.56%, 44.01% 48.65%, 44.68% 45.69%, 45.09% 42.69%, 45.24% 39.64%, 45.23% 37.90%, 45.22% 36.17%, 45.22% 34.43%, 45.22% 32.69%, 45.20% 32.22%, 45.10% 31.82%, 44.86% 31.51%, 44.43% 31.30%, 44.05% 31.01%, 43.90% 30.52%, 43.83% 29.84%, 43.76% 29.16%, 43.77% 28.75%, 43.88% 28.39%, 44.10% 28.09%, 44.44% 27.88%, 44.74% 27.70%, 44.93% 27.46%, 45.01% 26.79%, 45.00% 26.29%, 45.11% 25.79%, 45.32% 25.34%, 45.59% 25.00%, 45.97% 24.78%, 46.46% 24.70%, 48.27% 24.70%, 50.08% 24.69%, 51.89% 24.68%, 53.70% 24.69%, 54.29% 24.81%, 54.74% 25.15%, 55.02% 25.71%, 55.13% 26.46%, 55.16% 26.92%, 55.24% 27.32%, 55.45% 27.66%, 55.83% 27.93%, 56.15% 28.28%, 56.24% 28.80%, 56.22% 29.20%, 56.20% 29.60%, 56.18% 30.00%, 56.14% 30.39%, 55.96% 30.97%, 55.76% 31.18%, 55.46% 31.32%, 55.03% 31.62%, 54.91% 32.16%, 54.84% 35.58%, 54.82% 38.99%, 54.96% 42.40%, 55.36% 45.80%, 55.85% 48.22%, 56.51% 50.59%, 57.33% 52.91%, 58.29% 55.17%, 58.97% 56.63%, 59.65% 58.08%, 60.34% 59.54%, 61.02% 60.99%, 62.52% 64.67%, 63.59% 68.45%, 64.22% 72.35%, 64.40% 76.36%, 64.35% 82.00%, 64.33% 87.64%, 64.32% 93.28%, 64.32% 98.92%, 64.32% 99.46%, 64.31% 100.00%, 69.90% 100.00%, 100.00% 100.00%); }
+  .ar__th img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ar__th--b img { top: 22%; height: 76%; object-fit: contain; }
+  .ar__c { -webkit-flex: 1 1 auto; flex: 1 1 auto; min-width: 0; }
+  .ar__t { font-size: 20px; line-height: 1.3; }
+  .ar.is-act .ar__t { color: inherit; -webkit-transform: none; transform: none; }
+  .ar__ico { display: none; }
+  .ar__m { margin-top: 6px; font-size: 13px; line-height: 18px; }
+  .ar__x { padding-top: 8px; font-size: 15px; line-height: 1.5; }
+  .ar::before, .ax__l::after { background-size: 11px 2px; }
+  .awrap { display: none; }
+
+  .zz { padding-bottom: 48px; }
+  .zz__ph { position: relative; height: 0; padding-top: 58%; -webkit-clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%); clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%); }
+  .zz--r .zz__ph { -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 86%); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 86%); }
+  .zz__in { padding: 12px var(--pad) 0; }
+  .zz__m { font-size: 14px; }
+  .zz__t { margin-top: 12px; }
+  .zz__x { margin-top: 16px; }
+  .zz__btn { width: 100%; height: 52px; margin-top: 20px; font-size: 17px; }
+
+  .sh { padding-bottom: 40px; }
+  .sh__ph { position: relative; height: 0; padding-top: 58%; -webkit-clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%); clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%); }
+  .sh__in { padding: 12px var(--pad) 0; }
+  .sh__back { font-size: 14px; }
+  .sh__back svg { margin-right: 10px; }
+  .sh .zz__m { margin-top: 8px; }
+  .sh__t { margin-top: 12px; }
+  .sh__x { margin-top: 16px; }
+  .sb { padding: 40px var(--pad) 48px; }
+  .sb__in { max-width: 760px; margin: 0 auto; font-size: 17px; line-height: 1.65; }
+  .sb__in h2 { margin: 32px 0 12px; font-size: 24px; line-height: 1.25; }
+  .sb__in h2:first-child { margin-top: 0; }
+  .sb__in p { margin-bottom: 16px; }
+  .sb__in ul { margin: 0 0 16px; }
+  .sb__in li { padding-left: 24px; margin-bottom: 8px; }
+  .sb__in li::before { top: 14px; width: 14px; }
+  .sb__in figure { margin: 28px 0; }
+  .sb__in figcaption { margin-top: 8px; font-size: 13px; line-height: 1.4; }
+  .sb__in blockquote { margin: 28px 0; padding-left: 16px; font-size: 21px; line-height: 1.35; }
+  .rel { padding: 48px var(--pad) 56px; }
+  .ag--rel { margin-top: 24px; }
+}
+
+@media (max-width: 767px) {
+  .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ag { grid-template-columns: 1fr; grid-gap: 16px; gap: 16px; }
+  .pic { padding-top: 62%; }
+  .ar__th { width: 84px; height: 80px; margin-right: 12px; }
+  .ar__t { font-size: 18px; }
+  .ar__x { font-size: 14px; }
+}

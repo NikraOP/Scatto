@@ -118,6 +118,7 @@ main > section > *, .ftr > * { position: relative; z-index: 2; }
 .menu.is-open .menu__list li:nth-child(3) a { transition-delay: .16s; }
 .menu.is-open .menu__list li:nth-child(4) a { transition-delay: .24s; }
 .menu.is-open .menu__list li:nth-child(5) a { transition-delay: .32s; }
+.menu.is-open .menu__list li:nth-child(6) a { transition-delay: .4s; }
 .menu__list a:hover { color: var(--ink); }
 .menu__phone, .menu__mail { margin-top: 4rem; font-family: var(--mont); font-size: clamp(20px, 2.9rem, 32px); font-weight: 500; }
 .menu__mail { margin-top: 1rem; }
