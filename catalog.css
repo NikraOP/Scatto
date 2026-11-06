@@ -21,7 +21,7 @@
 .card__more { border: 0; cursor: pointer; }
 
 /* ---------- текст для поисковиков ---------- */
-.seo { background: var(--white); color: var(--ink); }
+.seo { position: relative; overflow: hidden; background: var(--white); color: var(--ink); }
 .seo__in { font-size: 2.1rem; font-weight: 300; line-height: 3.385rem; text-align: center; }
 .seo__in p { margin: 0 0 3.5rem; text-wrap: pretty; }
 .seo__list { margin-bottom: 3.5rem; }
@@ -61,6 +61,8 @@
   .cg { position: relative; z-index: 2; }
   .cg__none { padding: 6rem 0 12rem; }
   .seo { padding: 9.19rem 0 9rem; }
+  /* выбран фильтр — сетка короче, декор с координатами полной страницы убираем (буква А живёт в .seo и остаётся) */
+  .is-filtered .page > .decor, .is-filtered .cgauge { display: none; }
   .seo__in { width: 148.4rem; margin-left: 23.2rem; }
   .lead--cat { height: 76.9rem; }
   .lead--cat .lead__l { top: 12.06rem; }

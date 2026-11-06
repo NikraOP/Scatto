@@ -124,6 +124,10 @@
   .has-vsw .ftr { height: 34rem; }
   .lead .decor--6 { top: 14.1rem; }
   .lead .gauge--8 { left: 9.3rem; top: 44rem; }
+  /* блок заявки в статьях — геометрия как у .lead--cat в каталоге */
+  .lead { height: 76.9rem; }
+  .lead__l { top: 12.06rem; }
+  .form { top: 10.5rem; }
 
   /* вариант 1 */
   .a1 { padding: 47.1rem 0 9.8rem 19.1rem; }

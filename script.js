@@ -155,15 +155,48 @@
     hero.addEventListener('mouseleave', () => hole.style.setProperty('--mx', '0'));
   }
 
-  /* ---------- глобус: маршруты прорисовываются один раз при появлении ---------- */
+  /* ---------- глобус: ролик вперёд-назад (пинг-понг, склеен в globe-loop.mp4) и зациклен ---------- */
   const globe = document.querySelector('.logi__video');
   new IntersectionObserver(([e], obs) => {
     if (!e.isIntersecting) return;
     obs.disconnect();
     globe.src = globe.dataset.src;
-    if (reduce) { globe.addEventListener('loadedmetadata', () => { globe.currentTime = globe.duration - .05; }, { once: true }); return; }
+    /* при reduce-движении не крутим: показываем кадр, где маршруты прорисованы целиком (середина ролика) */
+    if (reduce) { globe.addEventListener('loadedmetadata', () => { globe.currentTime = globe.duration / 2 - .05; }, { once: true }); return; }
     setTimeout(() => globe.play().catch(() => {}), 500);
   }, { threshold: .4 }).observe(globe);
+
+  /* ---------- каталог на телефоне: одна карточка на экран, стрелки листают по одной ---------- */
+  const cardsEl = document.querySelector('.cards'), cardsNav = document.querySelector('.cards__nav');
+  if (cardsEl && cardsNav) {
+    const items = [...cardsEl.querySelectorAll('.card')];
+    const arrs = [...cardsNav.querySelectorAll('[data-cards]')];
+    const padL = () => parseFloat(getComputedStyle(cardsEl).paddingLeft) || 0;
+    // позиция карточки i в координатах прокрутки ленты и ближайшая к левому краю карточка
+    const xOf = i => cardsEl.scrollLeft + items[i].getBoundingClientRect().left - cardsEl.getBoundingClientRect().left - padL();
+    const current = () => {
+      const edge = cardsEl.getBoundingClientRect().left + padL();
+      let best = 0, min = Infinity;
+      items.forEach((el, i) => { const d = Math.abs(el.getBoundingClientRect().left - edge); if (d < min) { min = d; best = i; } });
+      return best;
+    };
+    const syncArrows = () => {
+      const i = current();
+      arrs[0].disabled = i <= 0;
+      arrs[1].disabled = i >= items.length - 1;
+    };
+    // лента листается плавно средствами CSS (scroll-behavior), здесь — только точная позиция карточки
+    const goTo = x => { cardsEl.scrollLeft = x; };
+    arrs.forEach(btn => btn.addEventListener('click', () => {
+      const i = Math.min(items.length - 1, Math.max(0, current() + (Number(btn.dataset.cards) || 1)));
+      goTo(xOf(i));
+      // плавная прокрутка идёт своё время, поэтому состояние стрелок обновляем с запасом
+      setTimeout(syncArrows, reduce ? 60 : 500);
+    }));
+    cardsEl.addEventListener('scroll', syncArrows, { passive: true });
+    addEventListener('resize', syncArrows);
+    syncArrows();
+  }
 
   /* ---------- чертёж проявляется по блокам, фото едут при прокрутке ---------- */
   const bands = [...document.querySelectorAll('.decor'), ...document.querySelectorAll('.gauge')];

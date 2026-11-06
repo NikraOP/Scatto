@@ -57,6 +57,8 @@
       if (ok) { shown++; c.classList.add('is-in'); }
     });
     none.hidden = shown > 0;
+    /* при фильтре сетка короче — чертёж страницы, привязанный к её координатам, убираем */
+    document.body.classList.toggle('is-filtered', !!(state.seg || state.neck || state.vol));
   };
   sels.forEach(s => {
     const b = s.querySelector('.sel__b');
