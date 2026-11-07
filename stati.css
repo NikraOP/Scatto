@@ -184,7 +184,10 @@
   .sh__ph { position: absolute; left: 0; top: 16rem; width: 79.8rem; height: 74rem; -webkit-clip-path: polygon(0 0, 100% 0, 69.32% 100%, 0 100%); clip-path: polygon(0 0, 100% 0, 69.32% 100%, 0 100%); }
   .sh__in { position: absolute; left: 87.2rem; top: 22rem; width: 90rem; }
   .sh .zz__m { margin-top: 1.4rem; }
-  .sh__t { margin-top: 2.2rem; white-space: nowrap; }
+  .sh__t { margin-top: 2.2rem; white-space: normal; }
+/* длинные заголовки статей переносятся внутри строки анимации, а не обрезаются */
+.sh__t .ln, .zz__t .ln { white-space: normal; }
+.sh__t .ln > span, .zz__t .ln > span { display: inline-block; max-width: 100%; }
   .sh__x { margin-top: 2.8rem; max-width: 72rem; }
   .sb { padding: 8rem 0 10rem 38rem; }
   .sb .gauge--6 { left: 150rem; top: 30rem; }

@@ -108,7 +108,7 @@
   .sel__l li { font-size: 16px; }
   .cg { grid-template-columns: 1fr; gap: 16px; }
   .cg .card { flex-direction: row; }
-  .cg .card__img { width: 38%; height: auto; flex: none; aspect-ratio: auto; object-fit: contain; align-self: stretch; }
+  .cg .card__img { width: 38%; height: auto; flex: none; aspect-ratio: 620 / 827; object-fit: contain; align-self: stretch; }
   .cg .card__body { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: 14px 14px 16px; text-align: left; }
   .cg .card__spec { margin: 6px 0 12px; font-size: 13px; line-height: 17px; }
   .cg .card__spec div { flex-wrap: wrap; column-gap: 8px; padding: 5px 0; }
