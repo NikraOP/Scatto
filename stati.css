@@ -162,7 +162,7 @@
   .ar__xi { min-height: 0; }
   .ar__x { padding-top: 1.2rem; padding-right: 8rem; }
   .awrap { position: -webkit-sticky; position: sticky; top: 14rem; z-index: 2; width: 62.4rem; height: 59.2rem; margin-left: 5.2rem; -webkit-flex: none; flex: none; }
-  .page--free { overflow: visible; }
+  .pagewrap--free { overflow: visible; }
 
   /* вариант 3 */
   .zz { height: 70.1rem; }

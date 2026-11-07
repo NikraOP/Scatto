@@ -62,7 +62,7 @@
   .cg__none { padding: 6rem 0 12rem; }
   .seo { padding: 9.19rem 0 9rem; }
   /* выбран фильтр — сетка короче, декор с координатами полной страницы убираем (буква А живёт в .seo и остаётся) */
-  .is-filtered .page > .decor, .is-filtered .cgauge { display: none; }
+  .is-filtered .pagewrap > .decor, .is-filtered .cgauge { display: none; }
   .seo__in { width: 148.4rem; margin-left: 23.2rem; }
   .lead--cat { height: 76.9rem; }
   .lead--cat .lead__l { top: 12.06rem; }
